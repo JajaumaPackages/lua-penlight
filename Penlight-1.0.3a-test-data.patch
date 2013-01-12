@@ -1,0 +1,15 @@
+diff --git a/tests/test-data.lua b/tests/test-data.lua
+index 721590a..3b86367 100644
+--- a/tests/test-data.lua
++++ b/tests/test-data.lua
+@@ -210,7 +210,8 @@ Time Message
+ -- else into one field
+ local Date = require 'pl.Date'
+ 
+-d = data.read(f,{convert={[1]=Date},last_field_collect=true})
++d = data.read(f,{convert={[1]=function (x) return Date(tonumber(x)) end},
++		 last_field_collect=true})
+ 
+ asserteq(#d[1],2)
+-asserteq(d[2][1]:year(),2012)
++asserteq(d[2][1]:year(),2010)
