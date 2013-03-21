@@ -2,17 +2,15 @@
 %global luapkgdir %{_datadir}/lua/%{luaver}
 
 # there's a circular (build) dependency with lua-ldoc
-%global with_docs 0
+%global with_docs 1
 
 Name:		lua-penlight
-Version:	1.0.3
-Release:	4.a%{?dist}
+Version:	1.1.0
+Release:	1%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
-Source0:	https://github.com/stevedonovan/Penlight/archive/1.0.3a.tar.gz
-# see https://github.com/stevedonovan/Penlight/issues/44
-Patch0:		Penlight-1.0.3a-test-data.patch
+Source0:	https://github.com/stevedonovan/Penlight/archive/%{version}/Penlight-%{version}.tar.gz
 BuildArch:	noarch
 BuildRequires:	lua >= %{luaver}
 BuildRequires:	lua-filesystem
@@ -51,8 +49,7 @@ Requires:	%{name} = %{version}-%{release}
 
 
 %prep
-%setup -q -n Penlight-1.0.3a
-%patch0 -p1
+%setup -q -n Penlight-%{version}
 
 
 %build
@@ -105,6 +102,9 @@ lua run.lua tests
 
 
 %changelog
+* Thu Mar 21 2013 Thomas Moschny <thomas.moschny@gmx.de> - 1.1.0-1
+- Update to 1.1.0.
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.3-4.a
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
@@ -119,4 +119,3 @@ lua run.lua tests
 
 * Fri Jan  4 2013 Thomas Moschny <thomas.moschny@gmx.de> - 1.0.3-1.a
 - New package.
-
