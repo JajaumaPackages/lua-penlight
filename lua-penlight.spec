@@ -2,11 +2,11 @@
 %global luapkgdir %{_datadir}/lua/%{luaver}
 
 # there's a circular (build) dependency with lua-ldoc
-%global with_docs 0
+%global with_docs 1
 
 Name:		lua-penlight
 Version:	1.1.0
-Release:	1%{?dist}.1
+Release:	2%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -102,6 +102,9 @@ lua run.lua tests
 
 
 %changelog
+* Tue May 14 2013 Tom Callaway <spot@fedoraproject.org> - 1.1.0-2
+- rebuild with docs
+
 * Sun May 12 2013 Tom Callaway <spot@fedoraproject.org> - 1.1.0-1.1
 - rebuild for lua 5.2, no docs
 
