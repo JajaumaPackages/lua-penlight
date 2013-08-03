@@ -6,7 +6,7 @@
 
 Name:		lua-penlight
 Version:	1.1.0
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -102,6 +102,9 @@ lua run.lua tests
 
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Tue May 14 2013 Tom Callaway <spot@fedoraproject.org> - 1.1.0-2
 - rebuild with docs
 
