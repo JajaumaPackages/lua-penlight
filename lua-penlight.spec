@@ -1,12 +1,18 @@
+%if 0%{?fedora} > 19
 %global luaver 5.2
+%else
+%global luaver 5.1
+%endif
 %global luapkgdir %{_datadir}/lua/%{luaver}
 
 # there's a circular (build) dependency with lua-ldoc
 %global with_docs 1
 
+%{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
+
 Name:		lua-penlight
-Version:	1.1.0
-Release:	3%{?dist}
+Version:	1.3.1
+Release:	1%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -14,6 +20,7 @@ Source0:	https://github.com/stevedonovan/Penlight/archive/%{version}/Penlight-%{
 BuildArch:	noarch
 BuildRequires:	lua >= %{luaver}
 BuildRequires:	lua-filesystem
+BuildRequires:	lua-markdown
 %if 0%{?with_docs}
 BuildRequires:	lua-ldoc
 %endif # with_docs
@@ -63,22 +70,19 @@ cp -av lua/pl %{buildroot}%{luapkgdir}
 # fix scripts
 chmod -x %{buildroot}%{luapkgdir}/pl/dir.lua
 
-# fix encoding
-iconv -f iso-8859-1 -t utf-8 CHANGES.txt > CHANGES.txt.tmp
-mv CHANGES.txt.tmp CHANGES.txt
-
-# fix line-endings
-sed -i 's/\r//' \
-  README.txt LICENCE.txt CHANGES.txt \
-  examples/*.lua
+# build and install README etc.
+mkdir -p %{buildroot}%{_pkgdocdir}
+markdown.lua -a *.md
+cp -av *.md.html %{buildroot}%{_pkgdocdir}
 
 %if 0%{?with_docs}
-# build docs
-ldoc -c docs/config.ld .
-
-# fix permissions
-chmod u=rwX,go=rX -R docs/api
+# build and install docs
+ldoc -c doc/config.ld .
+cp -av doc/api %{buildroot}%{_pkgdocdir}
 %endif # with_docs
+
+# install examples
+cp -av examples %{buildroot}%{_pkgdocdir}
 
 
 %check
@@ -87,21 +91,28 @@ lua run.lua tests
 
 
 %files
-%doc README.txt CHANGES.txt LICENCE.txt
+%{_pkgdocdir}/README.md.html
+%{_pkgdocdir}/CHANGES.md.html
+%{_pkgdocdir}/LICENSE.md.html
+%{_pkgdocdir}/CONTRIBUTING.md.html
 %{luapkgdir}/pl
 
 
 %if 0%{?with_docs}
 %files doc
-%doc docs/api/*
+%{_pkgdocdir}/api
 %endif # with_docs
 
 
 %files examples
-%doc examples/*
+%{_pkgdocdir}/examples
 
 
 %changelog
+* Sun Nov  3 2013 Thomas Moschny <thomas.moschny@gmx.de> - 1.3.1-1
+- Update to 1.3.1.
+- Use a single package doc dir.
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
