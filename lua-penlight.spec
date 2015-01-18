@@ -1,7 +1,7 @@
 %if 0%{?fedora} >= 22
 %global luaver 5.3
 %else
-%if 0%{?fedora} > 19
+%if 0%{?fedora} >= 20
 %global luaver 5.2
 %else
 %global luaver 5.1
@@ -16,7 +16,7 @@
 
 Name:		lua-penlight
 Version:	1.3.1
-Release:	4%{?dist}
+Release:	5%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -76,8 +76,8 @@ chmod -x %{buildroot}%{luapkgdir}/pl/dir.lua
 
 # build and install README etc.
 mkdir -p %{buildroot}%{_pkgdocdir}
-markdown.lua -a *.md
-cp -av *.md.html %{buildroot}%{_pkgdocdir}
+markdown.lua *.md
+cp -av *.html %{buildroot}%{_pkgdocdir}
 
 %if 0%{?with_docs}
 # build and install docs
@@ -97,10 +97,11 @@ LUA_PATH="%{buildroot}%{luapkgdir}/?/init.lua;%{buildroot}%{luapkgdir}/?.lua;;" 
 
 
 %files
-%{_pkgdocdir}/README.md.html
-%{_pkgdocdir}/CHANGES.md.html
-%{_pkgdocdir}/LICENSE.md.html
-%{_pkgdocdir}/CONTRIBUTING.md.html
+%dir %{_pkgdocdir}
+%{_pkgdocdir}/README.html
+%{_pkgdocdir}/CHANGES.html
+%{_pkgdocdir}/LICENSE.html
+%{_pkgdocdir}/CONTRIBUTING.html
 %{luapkgdir}/pl
 
 
@@ -115,6 +116,10 @@ LUA_PATH="%{buildroot}%{luapkgdir}/?/init.lua;%{buildroot}%{luapkgdir}/?.lua;;" 
 
 
 %changelog
+* Sun Jan 18 2015 Thomas Moschny <thomas.moschny@gmx.de> - 1.3.1-5
+- Own the package doc dir.
+- Remove extra .md suffix from generated HTML files.
+
 * Fri Jan 16 2015 Tom Callaway <spot@fedoraproject.org> - 1.3.1-4
 - build with docs
 
