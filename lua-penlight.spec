@@ -1,11 +1,7 @@
-%if 0%{?fedora} >= 22
+%if 0%{?fedora}
 %global luaver 5.3
 %else
-%if 0%{?fedora} >= 20
-%global luaver 5.2
-%else
 %global luaver 5.1
-%endif
 %endif
 %global luapkgdir %{_datadir}/lua/%{luaver}
 
@@ -15,8 +11,8 @@
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
 Name:		lua-penlight
-Version:	1.3.2
-Release:	3%{?dist}
+Version:	1.4.1
+Release:	1%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -91,9 +87,7 @@ cp -av examples %{buildroot}%{_pkgdocdir}
 
 %check
 LUA_PATH="%{buildroot}%{luapkgdir}/?/init.lua;%{buildroot}%{luapkgdir}/?.lua;;" \
-# Fails in lua 5.3
-# https://github.com/stevedonovan/Penlight/issues/132
-# lua run.lua tests
+lua run.lua tests
 
 
 %files
@@ -116,6 +110,10 @@ LUA_PATH="%{buildroot}%{luapkgdir}/?/init.lua;%{buildroot}%{luapkgdir}/?.lua;;" 
 
 
 %changelog
+* Wed Aug 31 2016 Thomas Moschny <thomas.moschny@gmx.de> - 1.4.1-1
+- Update to 1.4.1.
+- Re-enable tests.
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.3.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
