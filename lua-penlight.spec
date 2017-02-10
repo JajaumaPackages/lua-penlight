@@ -12,7 +12,7 @@
 
 Name:		lua-penlight
 Version:	1.4.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -110,6 +110,9 @@ lua run.lua tests
 
 
 %changelog
+* Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Wed Aug 31 2016 Thomas Moschny <thomas.moschny@gmx.de> - 1.4.1-1
 - Update to 1.4.1.
 - Re-enable tests.
