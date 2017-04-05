@@ -11,8 +11,8 @@
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
 Name:		lua-penlight
-Version:	1.4.1
-Release:	2%{?dist}
+Version:	1.5.0
+Release:	1%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -110,6 +110,9 @@ lua run.lua tests
 
 
 %changelog
+* Wed Apr  5 2017 Thomas Moschny <thomas.moschny@gmx.de> - 1.5.0-1
+- Update to 1.5.0.
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
