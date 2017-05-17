@@ -2,13 +2,13 @@
 %global luapkgdir %{_datadir}/lua/%{luaver}
 
 # there's a circular (build) dependency with lua-ldoc
-%global with_docs 0
+%global with_docs 1
 
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
 Name:		lua-penlight
 Version:	1.5.2
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -106,6 +106,9 @@ lua run.lua tests
 
 
 %changelog
+* Wed May 17 2017 Thomas Moschny <thomas.moschny@gmx.de> - 1.5.2-2
+- Re-enable docs.
+
 * Tue May 16 2017 Thomas Moschny <thomas.moschny@gmx.de> - 1.5.2-1
 - Update to 1.5.2.
 - Minor spec file cleanups.
