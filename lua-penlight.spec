@@ -2,7 +2,7 @@
 %global luapkgdir %{_datadir}/lua/%{luaver}
 
 # there's a circular (build) dependency with lua-ldoc
-%global with_docs 1
+%global with_docs 0
 
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
