@@ -7,8 +7,8 @@
 %{!?_pkgdocdir: %global _pkgdocdir %{_docdir}/%{name}-%{version}}
 
 Name:		lua-penlight
-Version:	1.5.2
-Release:	2%{?dist}
+Version:	1.5.4
+Release:	1%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -106,6 +106,9 @@ lua run.lua tests
 
 
 %changelog
+* Sun Jul 23 2017 Thomas Moschny <thomas.moschny@gmx.de> - 1.5.4-1
+- Update to 1.5.4.
+
 * Wed May 17 2017 Thomas Moschny <thomas.moschny@gmx.de> - 1.5.2-2
 - Re-enable docs.
 
