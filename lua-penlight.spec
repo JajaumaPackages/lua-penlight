@@ -1,4 +1,4 @@
-%global luaver 5.3
+%{!?luaver: %global luaver %(lua -e "print(string.sub(_VERSION, 5))")}
 %global luapkgdir %{_datadir}/lua/%{luaver}
 
 # there's a circular (build) dependency with lua-ldoc
@@ -8,7 +8,7 @@
 
 Name:		lua-penlight
 Version:	1.5.4
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Penlight Lua Libraries
 License:	MIT
 URL:		https://github.com/stevedonovan/Penlight
@@ -106,6 +106,9 @@ lua run.lua tests
 
 
 %changelog
+* Tue Aug 22 2017 Jajauma's Packages <jajauma@yandex.ru> - 1.5.4-3
+- Fixes for building with older lua on RHEL
+
 * Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
